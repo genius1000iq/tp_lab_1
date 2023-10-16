@@ -2,21 +2,10 @@
 
 Cargo::Cargo()
 {
-	std::cout << "Container is created.\n";
-	volume = 0;
+	std::cout << "Cargo is created.\n";
 }
 
 Cargo::~Cargo()
 {
-	std::cout << "Container is deleted\n";
-}
-
-void Cargo::Set()
-{
-
-}
-
-int Cargo::Get()
-{
-
+	std::cout << "Cargo is deleted\n";
 }
