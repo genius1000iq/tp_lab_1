@@ -6,7 +6,12 @@
 #include "string"
 int main()
 {
-    Train one;
+    /*Train one;
+    one.Set();
+    one.Print();*/
+
+    Car one;
     one.Set();
     one.Print();
+
 }
