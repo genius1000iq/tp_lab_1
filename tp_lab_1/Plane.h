@@ -4,8 +4,7 @@
 class Plain : public Cargo
 {
 public:
-	Plain() :
-		Cargo()
+	Plain()
 	{
 		type = NULL;
 		name = NULL;
