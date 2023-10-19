@@ -10,8 +10,12 @@ int main()
     one.Set();
     one.Print();*/
 
-    Car one;
-    one.Set();
-    one.Print();
+    /*Car two;
+    two.Set();
+    two.Print();*/
+
+    Plane three;
+    three.Set();
+    three.Print();
 
 }

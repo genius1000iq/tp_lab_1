@@ -22,12 +22,11 @@ public:
 		cities.volume;
 		cities.next = 0;
 		count_of_cars = 0;
+		count_of_cities = 0;
 	};
 	~Car() {};
 	void Set();
 	int GetVolume();
-	void Add();
-	void Delete();
 	void Print();
 	void Print_all_cities();
 	void Print_one_city(cities_and_extra what_we_print);

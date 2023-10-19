@@ -25,6 +25,7 @@ void Car::filling_all_cities(int count_of_cities)
 	for (int i = 0; i < count_of_cities; i++)
 	{
 		std::cout << "Enter name of city"<<std::endl;
+		if(i==0)
 		std::cin.get();
 			getline(std::cin, current_city->city);
 			std::cout << "Enter hours to this city" << std::endl;
@@ -64,6 +65,7 @@ void Car::Print()
 	std::cout << "model of car\t\t" << model << std::endl;
 	std::cout << "count of cars\t" << count_of_cars << std::endl;
 	std::cout << "Count of cities\t\t" << count_of_cities << std::endl;
+	
 	Print_all_cities();
 }
 

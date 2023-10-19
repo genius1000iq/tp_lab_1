@@ -1,23 +1,25 @@
 #pragma once
 #include "Cargo.cpp"
 
-class Plain : public Cargo
+class Plane : public Cargo
 {
 public:
-	Plain()
+	Plane()
 	{
-		type = NULL;
-		name = NULL;
-		size = 0;
-		cities = NULL;
-		volume = 0;
+		type;
+		name;
+		size;
+		cities;
+		volume;
 	};
-	~Plain() {};
-
+	~Plane() {};
+	void Set();
+	int GetVolume();
+	void Print();
 private:
-	char type;
-	char name;
-	char size;
-	int volume;
-	char cities;
+	std::string type;
+	std::string name;
+	std::string size;
+	std::string volume;
+	std::string cities;
 };
