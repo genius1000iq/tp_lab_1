@@ -1,6 +1,7 @@
 #pragma once
 #include "string"
 #include <iostream>
+#include <fstream>
 class Cargo
 {
 public:
@@ -12,6 +13,7 @@ public:
 	{
 	}
 	virtual void Set() = 0;
+	virtual void Print() = 0;
 	virtual int GetVolume() = 0;
 	/*virtual void Add() = 0;
 	virtual void Delete() = 0;

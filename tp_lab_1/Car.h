@@ -14,15 +14,7 @@ class Car : public Cargo
 public:
 	Car()
 	{
-		year_of_issue = 0;
-		brand_of_car;
-		model;
-		cities.city;
-		cities.hours = 0;
-		cities.volume;
-		cities.next = 0;
-		count_of_cars = 0;
-		count_of_cities = 0;
+		
 	};
 	~Car() {};
 	void Set();

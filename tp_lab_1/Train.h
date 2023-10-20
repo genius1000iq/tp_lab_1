@@ -6,11 +6,7 @@ public:
 
 	Train()
 	{
-		name;
-		year_of_issue = NULL;
-		route;
-		count_of_cars = NULL;
-		volume = 0;
+		
 	};
 	~Train() {};
 	void Set();

@@ -6,11 +6,7 @@ class Plane : public Cargo
 public:
 	Plane()
 	{
-		type;
-		name;
-		size;
-		cities;
-		volume;
+		
 	};
 	~Plane() {};
 	void Set();
