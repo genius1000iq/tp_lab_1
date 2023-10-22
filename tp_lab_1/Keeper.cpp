@@ -44,116 +44,122 @@ void Keeper::InputFile()
     in.open(path_input, std::ios::in);   // открываем файл для чтения
     if (in)                              // если файл открылся
     {
-        std::string buf;                // создаем буфер, куда будет считываться информация
-        getline(in, buf);
-        int type_of_data = stoi(buf);
-        Node* newNode=nullptr;
-
-        if (type_of_data == 1)
+        while (1)
         {
-            //You are adding Car
-            newNode->data = new Car;
-
+            std::string buf;                // создаем буфер, куда будет считываться информация
             getline(in, buf);
-            newNode->data->SetBrand(buf);
+            if (buf.empty() || buf=="\n")
+                return;
+            int type_of_data = stoi(buf);
+            Node* newNode = new Node(type_of_data, 2);
 
-            getline(in, buf);
-            newNode->data->SetYearOfIssue(stoi(buf));
-
-            getline(in, buf);
-            newNode->data->SetModel(buf);
-
-            getline(in, buf);
-            newNode->data->SetCountOfCars(buf);
-
-            getline(in, buf);
-            newNode->data->SetCountOfCities(stoi(buf));
-
-            int tmp = stoi(buf);
-            if (tmp > 0)
+            if (type_of_data == 1)
             {
-                for (int i = 0; i < tmp; i++)
+                //You are adding Car
+                //newNode->data = new Car;
+
+                getline(in, buf);
+                newNode->data->SetBrand(buf);
+
+                getline(in, buf);
+                newNode->data->SetYearOfIssue(stoi(buf));
+
+                getline(in, buf);
+                newNode->data->SetModel(buf);
+
+                getline(in, buf);
+                newNode->data->SetCountOfCars(buf);
+
+                getline(in, buf);
+                newNode->data->SetCountOfCities(stoi(buf));
+
+                int tmp = stoi(buf);
+                if (tmp > 0)
                 {
-                    std::string name;
-                    std::string tmphours;
-                    std::string volume;
-                    int hours;
-                    getline(in, name);
-                    getline(in, tmphours);
-                    hours = stoi(tmphours);
-                    getline(in, volume);
-                    newNode->data->SetCitiesAndExtra(name,volume,hours);
-                    
+                    for (int i = 0; i < tmp; i++)
+                    {
+                        std::string name;
+                        std::string tmphours;
+                        std::string volume;
+                        int hours;
+                        getline(in, name);
+                        getline(in, tmphours);
+                        hours = stoi(tmphours);
+                        getline(in, volume);
+                        newNode->data->SetCitiesAndExtra(name, volume, hours,i);
+                       
+                    }
+
                 }
+            }
+            else if (type_of_data == 2)
+            {
+                std::cout << "You are adding Train" << std::endl;
+                //  newNode->data = new Train;
+
+                getline(in, buf);
+                newNode->data->SetName(buf);
+
+                getline(in, buf);
+                newNode->data->SetYearOfIssue(stoi(buf));
+
+                getline(in, buf);
+                newNode->data->SetRoute(buf);
+
+                getline(in, buf);
+                newNode->data->SetCountOfCars(buf);
+
+                getline(in, buf);
+                newNode->data->SetVolume(buf);
 
             }
-        }
-        else if (type_of_data == 2)
-        {
-            std::cout << "You are adding Train" << std::endl;
-            newNode->data = new Train;
-            
-            getline(in, buf);
-            newNode->data->SetName(buf);
 
-            getline(in, buf);
-            newNode->data->SetYearOfIssue(stoi(buf));
+            else if (type_of_data == 3)
+            {
+                std::cout << "You are adding Plane" << std::endl;
+                //  Cargo* data = new Plane;
 
-            getline(in, buf);
-            newNode->data->SetRoute(buf);
+                getline(in, buf);
+                newNode->data->SetType(buf);
 
-            getline(in, buf);
-            newNode->data->SetCountOfCars(buf);
+                getline(in, buf);
+                newNode->data->SetName(buf);
 
-            getline(in, buf);
-            newNode->data->SetVolume(buf);
+                getline(in, buf);
+                newNode->data->SetSize(buf);
 
-        }
+                getline(in, buf);
+                newNode->data->SetCities(buf);
 
-        else if (type_of_data == 3)
-        {
-            std::cout << "You are adding Plane" << std::endl;
-            Cargo* data = new Plane;
-            
-            getline(in, buf);
-            newNode->data->SetType(buf);
-
-            getline(in, buf);
-            newNode->data->SetName(buf);
-
-            getline(in, buf);
-            newNode->data->SetSize(buf);
-
-            getline(in, buf);
-            newNode->data->SetCities(buf);
-
-            getline(in, buf);
-            newNode->data->SetVolume(buf);
-        }
-        else
-        {
-            std::cout << "error";
-            return;
-        }
-
-        newNode->next = nullptr;
-
-
-        if (head == nullptr)
-        {
-            head = newNode;
-        }
-        else
-        {
-            Node* temp = head;
-            while (temp->next != nullptr) {
-                temp = temp->next;
+                getline(in, buf);
+                newNode->data->SetVolume(buf);
             }
-            temp->next = newNode;
+            else
+            {
+                std::cout << "error";
+                return;
+            }
+
+            newNode->next = nullptr;
+
+
+            if (head == nullptr)
+            {
+                head = newNode;
+            }
+            else
+            {
+                Node* temp = head;
+                while (temp->next != nullptr) {
+                    temp = temp->next;
+                }
+                temp->next = newNode;
+            }
         }
+
     }
     else return;
-
+   
     in.close();
 }
 

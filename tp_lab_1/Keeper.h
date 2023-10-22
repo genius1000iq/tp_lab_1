@@ -9,10 +9,35 @@ struct Node {
     Cargo* data;       // «начение узла
     Node* next;     // ”казатель на следующий узел
 
-    Node(int type_of_data) 
+    
+    Node(int type_of_data, int a)
     {
-        
+        if (type_of_data == 1) {
+            std::cout << "You are adding Car" << std::endl;
+            data = new Car;
+            
+        }
+        else if (type_of_data == 2) {
+            std::cout << "You are adding Train" << std::endl;
+            data = new Train;
+            
+        }
+        else if (type_of_data == 3) {
+            std::cout << "You are adding Plane" << std::endl;
+            data = new Plane;
+        }
+        else
+        {
+            std::cout << "error";
+            return;
+        }
 
+        next = nullptr;
+
+    }
+
+    Node(int type_of_data) 
+    {        
         if (type_of_data==1) {
             std::cout << "You are adding Car" << std::endl;
             data = new Car;

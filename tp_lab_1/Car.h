@@ -35,7 +35,7 @@ public:
 	void SetRoute(std::string data){}
 
 	void SetCities(std::string data);
-	void SetCitiesAndExtra(std::string cit, std::string vol, int hour);
+	void SetCitiesAndExtra(std::string cit, std::string vol, int hour, int number_of_city);
 	void SetVolume(std::string data) {};
 	void SetHours(int data) {};
 	void SetNext(cities_and_extra* data);

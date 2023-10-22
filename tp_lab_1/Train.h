@@ -24,7 +24,7 @@ public:
 	void SetSize(std::string data){}
 	void SetRoute(std::string data);
 	void SetHours(int data){}
-	void SetCitiesAndExtra(std::string cit, std::string vol, int hour){}
+	void SetCitiesAndExtra(std::string cit, std::string vol, int hour, int number_of_city) {}
 	
 	void Print();
 	

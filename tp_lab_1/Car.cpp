@@ -102,12 +102,17 @@ void Car::SetNext(cities_and_extra* data)
 }
 
 
-void Car::SetCitiesAndExtra(std::string cit,std::string vol,int hour)
+void Car::SetCitiesAndExtra(std::string cit,std::string vol,int hour,int number_of_city)
 {
-	cities.city = cit;
-	cities.volume = vol;
-	cities.hours = hour;
-	cities.next = new(cities_and_extra);
+	cities_and_extra* current_city = &cities;
+	for (int i = 0; i < number_of_city; i++)
+	{
+		current_city = current_city->next;		
+	}
+	current_city->city = cit;
+	current_city->volume = vol;
+	current_city->hours = hour;
+	current_city->next = new(cities_and_extra);
 
 	/*
 cities_and_extra* current_city=&cities;

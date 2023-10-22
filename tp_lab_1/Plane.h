@@ -19,7 +19,7 @@ public:
 	void SetSize(std::string data);
 	void SetVolume(std::string data);
 	void SetHours(int data){}
-	void SetCitiesAndExtra(std::string cit, std::string vol, int hour){}
+	void SetCitiesAndExtra(std::string cit, std::string vol, int hour, int number_of_city) {}
 	virtual void SetYearOfIssue(int data) {}
 	virtual void SetBrand(std::string data) {}
 	virtual void SetModel(std::string data){}

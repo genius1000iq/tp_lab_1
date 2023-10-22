@@ -25,7 +25,7 @@ public:
 	virtual void SetName(std::string data)=0;
 	virtual void SetType(std::string data)=0;
 	virtual void SetSize(std::string data)=0;
-	virtual void SetCitiesAndExtra(std::string cit, std::string vol, int hour) = 0;
+	virtual void SetCitiesAndExtra(std::string cit, std::string vol, int hour, int number_of_city) = 0;
 	virtual void SetRoute(std::string data)=0;
 	virtual void Set() = 0;
 	virtual void SetHours(int data)=0;
