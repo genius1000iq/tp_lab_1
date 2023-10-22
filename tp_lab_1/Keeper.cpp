@@ -1,86 +1,207 @@
 #include "Keeper.h"
 
 
-void Keeper::Add() {
-    std::cout << "What type of cargo do you want to add?" << std::endl;
-    std::string type_of_cargo;
-    std::cout << "You can choose car, plane, or train.\n>";
-    getline(std::cin, type_of_cargo);
 
-    Cargo* new_item = nullptr;
-    if (type_of_cargo == "car" || type_of_cargo == "Car") {
-        new_item = new Car;
-    }
-    else if (type_of_cargo == "train" || type_of_cargo == "Train") {
-        new_item = new Train;
-    }
-    else if (type_of_cargo == "plane" || type_of_cargo == "Plane") {
-        new_item = new Plane;
-    }
-    else {
-        std::cout << "Error\n";
-
-        return; // Выход из функции после рекурсии Add()
+void Keeper::OutputFile()
+{
+    if (head == nullptr) {
+        std::cout << "Список пуст!" << std::endl;
+        return;
     }
 
-    new_item->Set();
-    array_of_items[count_of_items] = new_item;
-   
-    count_of_items++;
+    Node* temp = head;
+    int index = 1;
+    while (temp != nullptr) {
+        std::cout << index << ". ";
+        index++;
+        temp->data->OutputFile();
+        temp = temp->next;
+    }
+    std::cout << std::endl;
 }
 
-void Keeper::Print() 
+void Keeper::add(int type_of_data)
 {
-    for (int i = 0; i < count_of_items; i++) 
+    Node* newNode = new Node(type_of_data);
+
+    if (head == nullptr) {
+        head = newNode;
+    }
+
+    else
     {
-        array_of_items[i]->Print();
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
 }
 
-//void Keeper::Add()
-//{
-//	std::cout << "What type of cargo you want to add?" << std::endl;
-//	std::string type_of_cargo;
-//	std::cout << "You can choose car, plane or train.\n>";
-//	getline(std::cin, type_of_cargo);
-//
-//	Cargo* new_item = NULL;
-//
-//	if (type_of_cargo == "car" || type_of_cargo == "Car")
-//	{
-//		Car new_car;
-//		new_car.Set();
-//		new_item = new(Car);
-//		new_item = &new_car;
-//	}
-//	else if (type_of_cargo == "train" || type_of_cargo == "Train")
-//	{
-//		Train new_train;
-//		new_train.Set();
-//		new_item = new(Train);
-//		new_item = &new_train;
-//	}
-//	else if (type_of_cargo == "plane" || type_of_cargo == "Plane")
-//	{
-//		Plane new_plane;
-//		new_plane.Set();
-//		new_item = new(Plane);
-//		new_item = &new_plane;
-//	}
-//	else
-//	{
-//		std::cout << "Error\n";
-//		Add();
-//	}
-//
-//}
-
-void Keeper::Del(int number_of_item)
+void Keeper::InputFile()
 {
+    std::fstream in;                     // создаем поток
+    in.open(path_input, std::ios::in);   // открываем файл для чтения
+    if (in)                              // если файл открылся
+    {
+        std::string buf;                // создаем буфер, куда будет считываться информация
+        getline(in, buf);
+        int type_of_data = stoi(buf);
+        Node* newNode=nullptr;
 
+        if (type_of_data == 1)
+        {
+            //You are adding Car
+            newNode->data = new Car;
+
+            getline(in, buf);
+            newNode->data->SetBrand(buf);
+
+            getline(in, buf);
+            newNode->data->SetYearOfIssue(stoi(buf));
+
+            getline(in, buf);
+            newNode->data->SetModel(buf);
+
+            getline(in, buf);
+            newNode->data->SetCountOfCars(buf);
+
+            getline(in, buf);
+            newNode->data->SetCountOfCities(stoi(buf));
+
+            int tmp = stoi(buf);
+            if (tmp > 0)
+            {
+                for (int i = 0; i < tmp; i++)
+                {
+                    std::string name;
+                    std::string tmphours;
+                    std::string volume;
+                    int hours;
+                    getline(in, name);
+                    getline(in, tmphours);
+                    hours = stoi(tmphours);
+                    getline(in, volume);
+                    newNode->data->SetCitiesAndExtra(name,volume,hours);
+                    
+                }
+
+            }
+        }
+        else if (type_of_data == 2)
+        {
+            std::cout << "You are adding Train" << std::endl;
+            newNode->data = new Train;
+            
+            getline(in, buf);
+            newNode->data->SetName(buf);
+
+            getline(in, buf);
+            newNode->data->SetYearOfIssue(stoi(buf));
+
+            getline(in, buf);
+            newNode->data->SetRoute(buf);
+
+            getline(in, buf);
+            newNode->data->SetCountOfCars(buf);
+
+            getline(in, buf);
+            newNode->data->SetVolume(buf);
+
+        }
+
+        else if (type_of_data == 3)
+        {
+            std::cout << "You are adding Plane" << std::endl;
+            Cargo* data = new Plane;
+            
+            getline(in, buf);
+            newNode->data->SetType(buf);
+
+            getline(in, buf);
+            newNode->data->SetName(buf);
+
+            getline(in, buf);
+            newNode->data->SetSize(buf);
+
+            getline(in, buf);
+            newNode->data->SetCities(buf);
+
+            getline(in, buf);
+            newNode->data->SetVolume(buf);
+        }
+        else
+        {
+            std::cout << "error";
+            return;
+        }
+
+        newNode->next = nullptr;
+
+
+        if (head == nullptr)
+        {
+            head = newNode;
+        }
+        else
+        {
+            Node* temp = head;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    }
+    else return;
+
+    in.close();
 }
 
-void Keeper::Change(int number_of_item)
+void Keeper::display() 
 {
+    if (head == nullptr) {
+        std::cout << "Список пуст!" << std::endl;
+        return;
+    }
 
+    Node* temp = head;
+    int index = 1;
+    while (temp != nullptr) {
+        std::cout << index<<". ";
+        index++;
+        temp->data->Print();
+        temp = temp->next;
+    }
+    std::cout << std::endl;
+}
+
+void Keeper::remove(int index) {
+    if (head == nullptr) {
+        std::cout << "Список пуст!" << std::endl;
+        return;
+    }
+
+    if (index == 0) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node* temp = head;
+    Node* prev = nullptr;
+    int currentPosition = 0;
+
+    while (temp != nullptr) {
+        if (currentPosition == index) {
+            prev->next = temp->next;
+            delete temp;
+            return;
+        }
+        prev = temp;
+        temp = temp->next;
+        currentPosition++;
+    }
+
+    std::cout << "Некорректный индекс!" << std::endl;
 }

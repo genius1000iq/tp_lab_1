@@ -59,17 +59,104 @@ void Car::Print_all_cities()
 
 void Car::Print()
 {
-	std::cout << std::endl << std::endl;
+	
+	std::cout << "Car\t\t" << std::endl;
 	std::cout << "brand of car\t\t" << brand_of_car << std::endl;
 	std::cout << "year of issue\t" << year_of_issue << std::endl;
 	std::cout << "model of car\t\t" << model << std::endl;
 	std::cout << "count of cars\t" << count_of_cars << std::endl;
 	std::cout << "Count of cities\t\t" << count_of_cities << std::endl;
+	std::cout << std::endl << std::endl;
 	
 	Print_all_cities();
 }
 
-int Car::GetVolume()
+void Car::SetBrand(std::string data)
 {
-	return(year_of_issue);
+	brand_of_car = data;
+}
+
+void Car::SetModel(std::string data)
+{
+	model = data;
+}
+
+void Car::SetYearOfIssue(int data)
+{
+	year_of_issue = data;
+}
+
+void Car::SetCountOfCars(std::string data)
+{
+	count_of_cars = data;
+}
+
+void Car::SetCountOfCities(int data)
+{
+	count_of_cities = data;
+}
+
+void Car::SetNext(cities_and_extra* data)
+{
+	cities.next = data;
+}
+
+
+void Car::SetCitiesAndExtra(std::string cit,std::string vol,int hour)
+{
+	cities.city = cit;
+	cities.volume = vol;
+	cities.hours = hour;
+	cities.next = new(cities_and_extra);
+
+	/*
+cities_and_extra* current_city=&cities;
+	for (int i = 0; i < count_of_cities; i++)
+	{
+		std::cout << "Enter name of city"<<std::endl;
+		if(i==0)
+		std::cin.get();
+			getline(std::cin, current_city->city);
+			std::cout << "Enter hours to this city" << std::endl;
+			std::cin >> current_city->hours;
+			std::cout << "Volume of cargo for this city" << std::endl;
+			std::cin.get();
+			getline(std::cin, current_city->volume);
+		current_city->next = new(cities_and_extra);
+		current_city = current_city->next;
+	}
+	*/
+}
+
+void Car::SetCities(std::string)
+{
+
+}
+
+void Car::OutputFile()
+{
+		std::ofstream out;          // поток для записи
+		out.open(path_output, std::ios::app);      // открываем файл для записи
+		if (out.is_open())
+		{
+			out << "1" << "\n";
+			out << brand_of_car << "\n";
+			out << year_of_issue << "\n";
+			out << model << "\n";
+			out << count_of_cars << "\n";
+			out << count_of_cities << "\n";
+
+			cities_and_extra current_city = cities;
+			for (int i = 0; i < count_of_cities; i++)
+			{
+				out << current_city.city << "\n";
+				out << current_city.hours << "\n";
+				out << current_city.volume << "\n";
+				current_city = *current_city.next;
+			}
+			std::cout << "Saving complete!" << std::endl;
+		}
+		else
+			std::cout << "Can't find file";
+		out.close();
 }

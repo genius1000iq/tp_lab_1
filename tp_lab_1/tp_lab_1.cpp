@@ -12,7 +12,9 @@ int main()
 {
 
     Keeper four;
-    four.Add();
-    four.Print();
+   
+    
+    four.InputFile();
+    four.display();
     return 0;
 }
