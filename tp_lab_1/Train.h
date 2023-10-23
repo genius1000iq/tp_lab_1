@@ -9,6 +9,26 @@ public:
 		
 	};
 	~Train() {};
+
+	Train(const Train& other) {
+		name = other.name;
+		year_of_issue = other.year_of_issue;
+		route = other.route;
+		count_of_cars = other.count_of_cars;
+		volume = other.volume;
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const Train& train) {
+		os << "Train\t\t" << std::endl;
+		os << "name\t\t" << train.name << std::endl;
+		os << "year of issue\t" << train.year_of_issue << std::endl;
+		os << "route\t\t" << train.route << std::endl;
+		os << "count of cars\t" << train.count_of_cars << std::endl;
+		os << "volume\t\t" << train.volume << std::endl;
+		os << std::endl << std::endl;
+		return os;
+	}
+
 	void Set();
 	//int GetVolume();
 	void OutputFile();

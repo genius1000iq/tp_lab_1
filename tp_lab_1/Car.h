@@ -40,7 +40,6 @@ public:
 	void SetHours(int data) {};
 	void SetNext(cities_and_extra* data);
 	
-
 	void Print_all_cities();
 	void Print_one_city(cities_and_extra what_we_print);
 private:

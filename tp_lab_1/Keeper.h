@@ -3,8 +3,25 @@
 #include "Car.h"
 #include "Train.h"
 #include "Plane.h"
-
+#include <exception>
 // Структура узла списка
+
+
+#include <exception>
+#include <string>
+
+class FileInputException : public std::exception {
+private:
+    std::string errorMessage;
+
+public:
+    FileInputException(const std::string& message) : errorMessage(message) {}
+
+    virtual const char* what() const noexcept override {
+        return errorMessage.c_str();
+    }
+};
+
 struct Node {
     Cargo* data;       // Значение узла
     Node* next;     // Указатель на следующий узел
@@ -71,6 +88,8 @@ public:
    {
         head = nullptr;     
    }
+
+  
 
     // Метод для добавления элемента в список
    void add(int type_of_data); // type_of_data: 1 - Car; 2 - Train; 3 - Plain 

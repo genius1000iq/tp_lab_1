@@ -3,6 +3,7 @@
 void Train::Set()
 {
 	std::cout << "Enter name of cargo"<< std::endl;
+	std::cin.get();
 	getline(std::cin, name);
 	std::cout << "Enter year of issue"<< std::endl;
 	std::cin  >> year_of_issue;
@@ -60,6 +61,8 @@ void Train::SetRoute(std::string data)
 {
 	route = data;
 }
+
+
 
 void Train::SetCountOfCars(std::string data)
 {

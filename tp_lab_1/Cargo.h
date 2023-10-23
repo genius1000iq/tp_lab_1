@@ -1,6 +1,6 @@
 #pragma once
-#define path_output "D:\\studying\\ГУАП\\Технология программирования\\output.txt"
-#define path_input "D:\\studying\\ГУАП\\Технология программирования\\input.txt"
+#define path_output "D:\\studying\\ГУАП\\Технология программирования\\output.tx"
+#define path_input "D:\\studying\\ГУАП\\Технология программирования\\input.tx"
 #include "string"
 #include <iostream>
 #include <fstream>

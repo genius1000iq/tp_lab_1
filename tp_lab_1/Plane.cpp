@@ -3,6 +3,7 @@
 void Plane::Set()
 {
 	std::cout << "Enter name of cargo" << std::endl;
+	std::cin.get();
 	getline(std::cin, name);
 	std::cout << "Enter type" << std::endl;
 	getline(std::cin, type);
